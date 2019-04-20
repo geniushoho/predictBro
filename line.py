@@ -279,7 +279,7 @@ picURL = 'https://pic.pimg.tw/hankmstar/1523605728-525076794.jpg'
 #Token = "wy1a5c5dcFviz5eIrtGB6A0MNLmS2JcJ9Yqumu2PQtc"
 Token = "nNSnSuJ4PnQ2r91uahCQe9BNpAuW54FxTX7Vifpve2C"
 
-##Test git
+##Test git 2
 
 def SendMessageToLineNotify(message, picurl):    
     url = "https://notify-api.line.me/api/notify"    
