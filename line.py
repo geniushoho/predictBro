@@ -183,6 +183,7 @@ while z==0:
      
         url = "http://www.taifex.com.tw/cht/3/callsAndPutsDateDown?queryStartDate=" + yearb2 + "%2F" + monthb2 + "%2F" + dayb2 + "&queryEndDate=" + year0 + "%2F" + month0 + "%2F" + day0 + "&commodityId=TXO"
         time.sleep(1.5)
+        #print(url)
         #print(is_downloadable('http://www.taifex.com.tw/cht/3/callsAndPutsDateDown?queryStartDate=" + yearb2 + "%2F" + monthb2 + "%2F" + dayb2 + "&queryEndDate=" + year0 + "%2F" + month0 + "%2F" + day0 + "&commodityId=TXO'))
         
         print(yearb2+monthb2+dayb2)
@@ -225,15 +226,29 @@ BBB=Bbig-Bbigb1
 date2=df.ix[2,'date']
 BCmoney2=df.ix[2,'bmoney']
 BPmoney2=df.ix[5,'bmoney']
-Ratio_BPmoney2=round((BCmoney2-BPmoney2)/BPmoney2,2)
+SCmoney2=df.ix[2,'pmoney']
+SPmoney2=df.ix[5,'pmoney']
+#Ratio_BPmoney2=round((BCmoney2-BPmoney2)/BPmoney2,2) #BC/CP only
+Ratio_BPmoney2=round(((BCmoney2+SPmoney2)-(BPmoney2+SCmoney2))/(BCmoney2+SPmoney2),2)
 date1=df.ix[8,'date']
 BCmoney1=df.ix[8,'bmoney']
 BPmoney1=df.ix[11,'bmoney']
-Ratio_BPmoney1=round((BCmoney1-BPmoney1)/BPmoney1,2)
+SCmoney1=df.ix[8,'pmoney']
+SPmoney1=df.ix[11,'pmoney']
+#Ratio_BPmoney1=round((BCmoney1-BPmoney1)/BPmoney1,2)
+Ratio_BPmoney1=round(((BCmoney1+SPmoney1)-(BPmoney1+SCmoney1))/(BCmoney1+SPmoney1),2)
 date0=df.ix[14,'date']
 BCmoney0=df.ix[14,'bmoney']
 BPmoney0=df.ix[17,'bmoney']
-Ratio_BPmoney0=round((BCmoney0-BPmoney0)/BPmoney0,2)
+SCmoney0=df.ix[14,'pmoney']
+SPmoney0=df.ix[17,'pmoney']
+#Ratio_BPmoney0=round((BCmoney0-BPmoney0)/BPmoney0,2)
+Ratio_BPmoney0=round(((BCmoney0+SPmoney0)-(BPmoney0+SCmoney0))/(BCmoney0+SPmoney0),2)
+
+#print(BCmoney0)
+#print(SPmoney0)
+#print(BPmoney0)
+#print(SCmoney0)
 
 #print(date2, Ratio_BPmoney2)
 #print(date1, Ratio_BPmoney1)
@@ -278,8 +293,6 @@ stickerID = 101
 picURL = 'https://pic.pimg.tw/hankmstar/1523605728-525076794.jpg'
 #Token = "wy1a5c5dcFviz5eIrtGB6A0MNLmS2JcJ9Yqumu2PQtc"
 Token = "nNSnSuJ4PnQ2r91uahCQe9BNpAuW54FxTX7Vifpve2C"
-
-##Test git 2
 
 def SendMessageToLineNotify(message, picurl):    
     url = "https://notify-api.line.me/api/notify"    
