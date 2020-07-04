@@ -1,10 +1,22 @@
+### Location: Taiwan/Hsinchu
+### Owner: Yun-Han
+### Date: 20200704
+### Version: v2
+### Purpose: search data by date
+
 import requests
 import time
 import datetime
 from pandas_datareader import data as dreader
 import pandas as pd
 
-hweektoday = datetime.date.today().weekday()
+name = input('請輸入日期(如：2020-07-03): ')
+date_time_str = name + ' 15:15:27.243860'
+date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f').date()
+#print(date_time_obj)
+#print(type(date_time_obj))
+
+hweektoday = date_time_obj.weekday()
 
 def is_downloadable(url):
     """
@@ -47,58 +59,58 @@ def is_downloadable(url):
 ##HO##    monthb2 = "03"
 ##HO##    dayb2 = "20"
 ##HO##elif hweektoday == 6: #如果是星期日的話
-##HO##    year0 = (datetime.date.today() -  datetime.timedelta(days=2)).strftime("%Y")
-##HO##    month0 = (datetime.date.today() -  datetime.timedelta(days=2)).strftime("%m")
-##HO##    day0 = (datetime.date.today() -  datetime.timedelta(days=2)).strftime("%d")
-##HO##    yearb2 = (datetime.date.today() -  datetime.timedelta(days=4)).strftime("%Y")
-##HO##    monthb2 = (datetime.date.today() -  datetime.timedelta(days=4)).strftime("%m")
-##HO##    dayb2 = (datetime.date.today() -  datetime.timedelta(days=4)).strftime("%d")
-##HO##    #dtClosed = str(datetime.date.today() - datetime.timedelta(days = 3 ))#日期就要
+##HO##    year0 = (date_time_obj -  datetime.timedelta(days=2)).strftime("%Y")
+##HO##    month0 = (date_time_obj -  datetime.timedelta(days=2)).strftime("%m")
+##HO##    day0 = (date_time_obj -  datetime.timedelta(days=2)).strftime("%d")
+##HO##    yearb2 = (date_time_obj -  datetime.timedelta(days=4)).strftime("%Y")
+##HO##    monthb2 = (date_time_obj -  datetime.timedelta(days=4)).strftime("%m")
+##HO##    dayb2 = (date_time_obj -  datetime.timedelta(days=4)).strftime("%d")
+##HO##    #dtClosed = str(date_time_obj - datetime.timedelta(days = 3 ))#日期就要
 ##HO##elif hweektoday == 5: #如果是星期六的話
-##HO##    year0 = (datetime.date.today() -  datetime.timedelta(days=1)).strftime("%Y")
-##HO##    month0 = (datetime.date.today() -  datetime.timedelta(days=1)).strftime("%m")
-##HO##    day0 = (datetime.date.today() -  datetime.timedelta(days=1)).strftime("%d")
-##HO##    yearb2 = (datetime.date.today() -  datetime.timedelta(days=3)).strftime("%Y")
-##HO##    monthb2 = (datetime.date.today() -  datetime.timedelta(days=3)).strftime("%m")
-##HO##    dayb2 = (datetime.date.today() -  datetime.timedelta(days=3)).strftime("%d")
+##HO##    year0 = (date_time_obj -  datetime.timedelta(days=1)).strftime("%Y")
+##HO##    month0 = (date_time_obj -  datetime.timedelta(days=1)).strftime("%m")
+##HO##    day0 = (date_time_obj -  datetime.timedelta(days=1)).strftime("%d")
+##HO##    yearb2 = (date_time_obj -  datetime.timedelta(days=3)).strftime("%Y")
+##HO##    monthb2 = (date_time_obj -  datetime.timedelta(days=3)).strftime("%m")
+##HO##    dayb2 = (date_time_obj -  datetime.timedelta(days=3)).strftime("%d")
 ##HO###elif (hweektoday == 0) and (int("%d" % datetime.datetime.now().hour) < 15): #如果是星期1的話
 ##HO###    #print("ohmygod")
-##HO###    year0 = (datetime.date.today() -  datetime.timedelta(days=3)).strftime("%Y")
-##HO###    month0 = (datetime.date.today() -  datetime.timedelta(days=3)).strftime("%m")
-##HO###    day0 = (datetime.date.today() -  datetime.timedelta(days=3)).strftime("%d")
-##HO###    yearb2 = (datetime.date.today() -  datetime.timedelta(days=5)).strftime("%Y")
-##HO###    monthb2 = (datetime.date.today() -  datetime.timedelta(days=5)).strftime("%m")
-##HO###    dayb2 = (datetime.date.today() -  datetime.timedelta(days=5)).strftime("%d")
+##HO###    year0 = (date_time_obj -  datetime.timedelta(days=3)).strftime("%Y")
+##HO###    month0 = (date_time_obj -  datetime.timedelta(days=3)).strftime("%m")
+##HO###    day0 = (date_time_obj -  datetime.timedelta(days=3)).strftime("%d")
+##HO###    yearb2 = (date_time_obj -  datetime.timedelta(days=5)).strftime("%Y")
+##HO###    monthb2 = (date_time_obj -  datetime.timedelta(days=5)).strftime("%m")
+##HO###    dayb2 = (date_time_obj -  datetime.timedelta(days=5)).strftime("%d")
 ##HO##elif (hweektoday == 0) and (int("%d" % datetime.datetime.now().hour) >= 15): #如果是星期1的話
 ##HO##    #print(hweektoday == 0)
 ##HO##    #print(int("%d" % datetime.datetime.now().hour) >= 15)
 ##HO##    #print("ohmy")
-##HO##    year0 = datetime.date.today().strftime("%Y")
-##HO##    month0 = datetime.date.today().strftime("%m")
-##HO##    day0 = datetime.date.today().strftime("%d")
-##HO##    yearb2 = (datetime.date.today() -  datetime.timedelta(days=4)).strftime("%Y")
-##HO##    monthb2 = (datetime.date.today() -  datetime.timedelta(days=4)).strftime("%m")
-##HO##    dayb2 = (datetime.date.today() -  datetime.timedelta(days=4)).strftime("%d")
+##HO##    year0 = date_time_obj.strftime("%Y")
+##HO##    month0 = date_time_obj.strftime("%m")
+##HO##    day0 = date_time_obj.strftime("%d")
+##HO##    yearb2 = (date_time_obj -  datetime.timedelta(days=4)).strftime("%Y")
+##HO##    monthb2 = (date_time_obj -  datetime.timedelta(days=4)).strftime("%m")
+##HO##    dayb2 = (date_time_obj -  datetime.timedelta(days=4)).strftime("%d")
 ##HO##elif (hweektoday == 1) and (int("%d" % datetime.datetime.now().hour) >= 15): #如果是星期2的話
 ##HO##    #print("ohmyQQ")
-##HO##    year0 = datetime.date.today().strftime("%Y")
-##HO##    month0 = datetime.date.today().strftime("%m")
-##HO##    day0 = datetime.date.today().strftime("%d")
-##HO##    yearb2 = (datetime.date.today() -  datetime.timedelta(days=4)).strftime("%Y")
-##HO##    monthb2 = (datetime.date.today() -  datetime.timedelta(days=4)).strftime("%m")
-##HO##    dayb2 = (datetime.date.today() -  datetime.timedelta(days=4)).strftime("%d")
+##HO##    year0 = date_time_obj.strftime("%Y")
+##HO##    month0 = date_time_obj.strftime("%m")
+##HO##    day0 = date_time_obj.strftime("%d")
+##HO##    yearb2 = (date_time_obj -  datetime.timedelta(days=4)).strftime("%Y")
+##HO##    monthb2 = (date_time_obj -  datetime.timedelta(days=4)).strftime("%m")
+##HO##    dayb2 = (date_time_obj -  datetime.timedelta(days=4)).strftime("%d")
 ##HO##else:
 ##HO##    #print(hweektoday == 0)
 ##HO##    #print(int("%d" % datetime.datetime.now().hour) > 15)
 ##HO##    #print(int("%d" % datetime.datetime.now().hour))
 ##HO##    #print("ohmyGG")
-##HO##    year0 = datetime.date.today().strftime("%Y")
-##HO##    month0 = datetime.date.today().strftime("%m")
-##HO##    day0 = datetime.date.today().strftime("%d")
-##HO##    yearb2 = (datetime.date.today() -  datetime.timedelta(days=2)).strftime("%Y")
-##HO##    monthb2 = (datetime.date.today() -  datetime.timedelta(days=2)).strftime("%m")
-##HO##    dayb2 = (datetime.date.today() -  datetime.timedelta(days=2)).strftime("%d")
-##HO##    #dtClosed = str(datetime.date.today() - datetime.timedelta(days = 1))
+##HO##    year0 = date_time_obj.strftime("%Y")
+##HO##    month0 = date_time_obj.strftime("%m")
+##HO##    day0 = date_time_obj.strftime("%d")
+##HO##    yearb2 = (date_time_obj -  datetime.timedelta(days=2)).strftime("%Y")
+##HO##    monthb2 = (date_time_obj -  datetime.timedelta(days=2)).strftime("%m")
+##HO##    dayb2 = (date_time_obj -  datetime.timedelta(days=2)).strftime("%d")
+##HO##    #dtClosed = str(date_time_obj - datetime.timedelta(days = 1))
 
 #print(dtClosed)
 #print(type(day0))
@@ -112,17 +124,17 @@ def is_downloadable(url):
 #時間: 檢查元素 -> network -> Header -> Form Data (view parsed)
 #url = "http://www.taifex.com.tw/cht/3/futContractsDateDown?queryStartDate=" + yearb2 + "%2F" + monthb2 + "%2F" + dayb2 + "&queryEndDate=" + year0 + "%2F" + month0 + "%2F" + day0 + "&commodityId=TXF"
 
-#print((datetime.date.today() -  datetime.timedelta(days=j)).strftime("%d"))
-print(datetime.date.today())
-#year0 = datetime.date.today().strftime("%Y")
-#month0 = datetime.date.today().strftime("%m")
-#day0 = datetime.date.today().strftime("%d")
-#year0 = (datetime.date.today() -  datetime.timedelta(days=0)).strftime("%Y")
-#month0 = (datetime.date.today() -  datetime.timedelta(days=0)).strftime("%m")
-#day0 = (datetime.date.today() -  datetime.timedelta(days=0)).strftime("%d")
-#yearb2 = (datetime.date.today() -  datetime.timedelta(days=2)).strftime("%Y")
-#monthb2 = (datetime.date.today() -  datetime.timedelta(days=2)).strftime("%m")
-#dayb2 = (datetime.date.today() -  datetime.timedelta(days=2)).strftime("%d")
+#print((date_time_obj -  datetime.timedelta(days=j)).strftime("%d"))
+print(date_time_obj)
+#year0 = date_time_obj.strftime("%Y")
+#month0 = date_time_obj.strftime("%m")
+#day0 = date_time_obj.strftime("%d")
+#year0 = (date_time_obj -  datetime.timedelta(days=0)).strftime("%Y")
+#month0 = (date_time_obj -  datetime.timedelta(days=0)).strftime("%m")
+#day0 = (date_time_obj -  datetime.timedelta(days=0)).strftime("%d")
+#yearb2 = (date_time_obj -  datetime.timedelta(days=2)).strftime("%Y")
+#monthb2 = (date_time_obj -  datetime.timedelta(days=2)).strftime("%m")
+#dayb2 = (date_time_obj -  datetime.timedelta(days=2)).strftime("%d")
 
 #year0 = "2019"
 #month0 = "04"
@@ -143,15 +155,15 @@ z=False
 
 while z==0:
     j+=1
-    year0 = (datetime.date.today() -  datetime.timedelta(days=j-1)).strftime("%Y")
-    month0 = (datetime.date.today() -  datetime.timedelta(days=j-1)).strftime("%m")
-    day0 = (datetime.date.today() -  datetime.timedelta(days=j-1)).strftime("%d")
+    year0 = (date_time_obj -  datetime.timedelta(days=j-1)).strftime("%Y")
+    month0 = (date_time_obj -  datetime.timedelta(days=j-1)).strftime("%m")
+    day0 = (date_time_obj -  datetime.timedelta(days=j-1)).strftime("%d")
     yearb2 = year0
     monthb2 = month0
     dayb2 = day0
-#    yearb2 = (datetime.date.today() -  datetime.timedelta(days=(2+j))).strftime("%Y")
-#    monthb2 = (datetime.date.today() -  datetime.timedelta(days=(2+j))).strftime("%m")
-#    dayb2 = (datetime.date.today() -  datetime.timedelta(days=(2+j))).strftime("%d")
+#    yearb2 = (date_time_obj -  datetime.timedelta(days=(2+j))).strftime("%Y")
+#    monthb2 = (date_time_obj -  datetime.timedelta(days=(2+j))).strftime("%m")
+#    dayb2 = (date_time_obj -  datetime.timedelta(days=(2+j))).strftime("%d")
     print(yearb2+monthb2+dayb2)
     print(year0+month0+day0)
     z = is_downloadable("http://www.taifex.com.tw/cht/3/callsAndPutsDateDown?queryStartDate=" + yearb2 + "%2F" + monthb2 + "%2F" + dayb2 + "&queryEndDate=" + year0 + "%2F" + month0 + "%2F" + day0 + "&commodityId=TXO")
@@ -174,12 +186,12 @@ while z==0:
 #        print(x)
 #        print(i)
 #        print(j)
-        year0 = (datetime.date.today() -  datetime.timedelta(days=j-1)).strftime("%Y")
-        month0 = (datetime.date.today() -  datetime.timedelta(days=j-1)).strftime("%m")
-        day0 = (datetime.date.today() -  datetime.timedelta(days=j-1)).strftime("%d")
-        yearb2 = (datetime.date.today() -  datetime.timedelta(days=(2+j-1+i))).strftime("%Y")
-        monthb2 = (datetime.date.today() -  datetime.timedelta(days=(2+j-1+i))).strftime("%m")
-        dayb2 = (datetime.date.today() -  datetime.timedelta(days=(2+j-1+i))).strftime("%d")
+        year0 = (date_time_obj -  datetime.timedelta(days=j-1)).strftime("%Y")
+        month0 = (date_time_obj -  datetime.timedelta(days=j-1)).strftime("%m")
+        day0 = (date_time_obj -  datetime.timedelta(days=j-1)).strftime("%d")
+        yearb2 = (date_time_obj -  datetime.timedelta(days=(2+j-1+i))).strftime("%Y")
+        monthb2 = (date_time_obj -  datetime.timedelta(days=(2+j-1+i))).strftime("%m")
+        dayb2 = (date_time_obj -  datetime.timedelta(days=(2+j-1+i))).strftime("%d")
      
         url = "http://www.taifex.com.tw/cht/3/callsAndPutsDateDown?queryStartDate=" + yearb2 + "%2F" + monthb2 + "%2F" + dayb2 + "&queryEndDate=" + year0 + "%2F" + month0 + "%2F" + day0 + "&commodityId=TXO"
         time.sleep(1.5)
