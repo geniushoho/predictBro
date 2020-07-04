@@ -1,10 +1,22 @@
+### Location: Taiwan/Hsinchu
+### Owner: Yun-Han
+### Date: 20200704
+### Version: v2
+### Purpose: search data by date
+
 import requests
 import time
 import datetime
 from pandas_datareader import data as dreader
 import pandas as pd
 
-hweektoday = datetime.date.today().weekday()
+name = input('請輸入日期(如：2020-07-03): ')
+date_time_str = name + ' 15:15:27.243860'
+date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f').date()
+#print(date_time_obj)
+#print(type(date_time_obj))
+
+hweektoday = date_time_obj.weekday()
 
 def is_downloadable(url):
     """
