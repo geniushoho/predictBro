@@ -19,13 +19,13 @@ def is_downloadable(url):
 #    print(yearb2+monthb2+dayb2)
 #    print(year0+month0+day0)
 
-    h = requests.get(url)
-    time.sleep(1.5)
+    h = requests.get(url, verify=False)
+    time.sleep(3)
 #    print(h.text)
 #    print(len(h.text))
 #    print("test")
     if len(h.text) < 650:
-        time.sleep(1.5)
+        time.sleep(3)
         print(year0+month0+day0+"@holiday")
         #print('holiday')
         return False
@@ -161,7 +161,7 @@ while z==0:
     print(yearb2+monthb2+dayb2)
     print(year0+month0+day0)
     z = is_downloadable("http://www.taifex.com.tw/cht/3/callsAndPutsDateDown?queryStartDate=" + yearb2 + "%2F" + monthb2 + "%2F" + dayb2 + "&queryEndDate=" + year0 + "%2F" + month0 + "%2F" + day0 + "&commodityId=TXO")
-#    time.sleep(1.5)
+#    time.sleep(3)
 #    j+=1
 #    print(j)
 #    print(z)
@@ -188,17 +188,17 @@ while z==0:
         dayb2 = (date_time_obj -  datetime.timedelta(days=(2+j-1+i))).strftime("%d")
      
         url = "http://www.taifex.com.tw/cht/3/callsAndPutsDateDown?queryStartDate=" + yearb2 + "%2F" + monthb2 + "%2F" + dayb2 + "&queryEndDate=" + year0 + "%2F" + month0 + "%2F" + day0 + "&commodityId=TXO"
-        time.sleep(1.5)
+        time.sleep(3)
         #print(url)
         #print(is_downloadable('http://www.taifex.com.tw/cht/3/callsAndPutsDateDown?queryStartDate=" + yearb2 + "%2F" + monthb2 + "%2F" + dayb2 + "&queryEndDate=" + year0 + "%2F" + month0 + "%2F" + day0 + "&commodityId=TXO'))
         
         print(yearb2+monthb2+dayb2)
         print(year0+month0+day0)
-        res = requests.get(url)
+        res = requests.get(url, verify=False)
         #print(res.status_code)
         #print(res.headers)
         #print(res.text)
-        time.sleep(1.5)
+        time.sleep(3)
         f = open('export.csv', 'w+', encoding = 'UTF-8-sig')
         f.write(res.text)
         f.close()
